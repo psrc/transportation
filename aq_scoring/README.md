@@ -16,9 +16,21 @@ After install is complete enter:
 You should see (AQ_SCORING) in the prompt. This indicates that the prompt is using all the libraries associated with the virtual environment. This environment will need to be activated using this command any time a new prompt is opened.
 
 ## Elmer Connections
-Most Data staff should already have access to work with Elmer databases. Check that the ODBC driver is installed on your workspace by searching for it in Windows - it should show up as ODBC Data Sources (64-bit). If not, [download the ODBC Driver 17 here](https://go.microsoft.com/fwlink/?linkid=2200732) and follow the install instructions, selecting all defaults. If there are problems connecting with Elmer, contact Brice or Chris Peak. 
+Check that the ODBC driver is installed on your workspace by searching for it in Windows - it should show up as ODBC Data Sources (64-bit). If not, [download the ODBC Driver 17 here](https://go.microsoft.com/fwlink/?linkid=2200732) and follow the install instructions, selecting all defaults. If there are problems connecting with Elmer, contact Brice or Chris Peak. 
 
-# Usage
-Configuration settings for the script are controlled by **configuration.toml**. 
+## Input Data and Configuration
+Configuration settings for the script are controlled by **configuration.toml**. Projects to be buffered and analyzed should be stored in a shapefile, with the path defined in **project_dir**. The code assumes project shapefile includes the following columns:
+- projID (project ID for reference)
+- App_ID (unique application ID)
 
-## Input Data
+Outputs are written locally to the working directory, in an folder called **outputs** by default. 
+
+Users should specify the population data in **ofm_estimate_year** and **ofm_vintage**. Generally, these should be the same year and reflect the most current available data. 
+
+The **buffer_distance** configuration specifies distance around each project to consider. The value is in feet and is set to 1/2 mile (2,640 feet) by default. 
+
+# Usage and Outputs
+To run the script, use the Anaconda prompt and ensure the AQ_SCORING environment is active (see above). From the project directory enter:
+`python process_data.py`
+
+On a high-powered server the script takes about 90 seconds to run. Less powerful machines will take longer, perhaps several minutes. When the script is complete, the total processing time will be reported and the outputs will be available at **outputs\project_population.csv.**
