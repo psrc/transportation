@@ -1,6 +1,7 @@
 import os, datetime
 import toml
 import psrcelmerpy
+import numpy as np
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
@@ -35,6 +36,10 @@ gdf = gpd.sjoin(project_gdf, parcel_gdf)
 
 # Aggregate intersection to get population totals for each project
 result_df = gdf[['projID','App_ID','household_pop']].groupby(['projID','App_ID']).sum()[['household_pop']].reset_index()
+# OFM Estimates are not integers because they are calculated from higher-level geographies
+# Round up total for each project to nearest integer
+result_df['household_pop'] = np.ceil(result_df['household_pop']).astype(int)
+# Rename for clarity
 result_df.rename(columns={
     'household_pop': f'population_in_{config['buffer_distance']}_ft_buffer'},
     inplace=True
