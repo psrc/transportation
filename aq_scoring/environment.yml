@@ -135,6 +135,7 @@ dependencies:
   - zlib=1.2.13=h8cc25b3_0
   - zstd=1.5.5=hd43e919_0
   - pip:
+    - psrcelmerpy==0.1.0
     - pymssql==2.3.0
     - pyodbc==5.1.0
     - pyogrio==0.7.2

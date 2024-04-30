@@ -1,8 +1,8 @@
-project_dir = 'X:/Trans/TIP/Adopted TIPs/2025-28 Working Folder/Call for Projects/FHWA Regional/Scoring/Air Quality/nonmotorized_calcs/data/example_projects.shp'
-output_dir = 'outputs'    # Permissions not available to X drive from servers; store outputs elsewhere
+project_dir = 'X:/Trans/TIP/Adopted TIPs/2025-28 Working Folder/Call for Projects/FHWA Regional/Scoring/Air Quality/nonmotorized_calcs/data/REG_FHWA_Projects.shp'
+output_dir = 'outputs'    # Permissions not available to X drive from servers; write outputs locally
 
-parcel_file_dir = 'R:/e2projects_two/SoundCast/Inputs/dev/landuse/2023/base_year/parcels_urbansim.txt'
-population_file = 'R:/e2projects_two/SoundCast/Inputs/dev/landuse/2023/base_year/hh_and_persons.h5'
+ofm_estimate_year = 2023
+ofm_vintage = 2023
 
 # Spatial projection definitions
 LAT_LNG_CRS = 'epsg:4326'    # Survey data expected in lat/lng format
