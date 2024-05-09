@@ -8,4 +8,6 @@ ofm_vintage = 2023
 LAT_LNG_CRS = 'epsg:4326'    # Survey data expected in lat/lng format
 WA_STATE_PLANE_CRS = 'epsg:2285'    # Projection of parcel and TAZ data; survey data is converted to this
 
-buffer_distance = '2640'    # in feet
+[buffer_distance] # in feet
+'quarter_mile' = 1320
+'half_mile' = 2640

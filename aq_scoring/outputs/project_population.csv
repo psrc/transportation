@@ -1,18 +1,22 @@
-Fullname,population
-Auburn A Street Loop,3546.0
-Auburn SR 164 Widening (Hemlock to Poplar),4611.0
-Bellevue 120th Ave NE Stage 4,2754.0
-Bellevue Mountains to Sound Greenway Trail,5422.0
-Black Diamond SR 169 Corridor Improvements,1077.0
-Covington SR 516 - 185th to 192nd,4198.0
-Covington SR 516 and Covington Way,2690.0
-Issaquah Newport Way NW Improvement Project,3524.0
-Issaquah-Hobart and May Valley Intersection,436.0
-NE Woodinville Duvall Rd and W Snoqualmie Valley Rd,39.0
-North Bend Bendigo Blvd N/W 4th St Roundabout,1732.0
-Pacific West Valley Highway Reconstruction,3042.0
-Redmond 70th Street Extension,2450.0
-Renton NE Sunset Blvd (SR 900),12095.0
-Sammamish Issaquah Fall City Road Project,8885.0
-SeaTac 34th Ave S Phase 2,10389.0
-Seattle Downtown Bike Network,62351.0
+,projID,App_ID,half_mile,quarter_mile
+0,ARL,REG-25,4941,1552
+1,AUB,REG-20,3700,1097
+2,BELL,REG-19,2873,1009
+3,FIF,REG-23,78,13
+4,KEN,REG-18,496,1
+5,KIRK_1,REG-04,3714,828
+6,KIRK_2,REG-03,5436,1787
+7,KTCO,REG-05,1897,794
+8,LYN,REG-01,3475,379
+9,MAR,REG-07,2232,845
+10,MV,REG-11,3266,643
+11,PCO,REG-24,7713,4260
+12,POB,REG-08,19,13
+13,POS,REG-32,2896,697
+14,REN,REG-15,5094,2250
+15,SEA_1,REG-12,18650,9411
+16,SEA_2,REG-13,58454,22004
+17,SNOCO_1,REG-26,7645,3319
+18,SNOCO_2,REG-27,7053,2270
+19,SUM,REG-21,811,66
+20,TAC,REG-22,3982,377

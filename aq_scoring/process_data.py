@@ -28,26 +28,33 @@ parcel_gdf = parcel_gdf.merge(ofm_df, on='parcel_id', how='left')
 project_gdf = gpd.read_file(config['project_dir'])
 project_gdf.crs = config["WA_STATE_PLANE_CRS"]
 
-# Buffer  shapefile geometry
-project_gdf.geometry = project_gdf.buffer(int(config['buffer_distance']))
+result_df = pd.DataFrame()
 
-# Intersect buffered area with parcel geodataframe
-gdf = gpd.sjoin(project_gdf, parcel_gdf)
+for distance_label, distance in config['buffer_distance'].items():
+    # Buffer shapefile geometry for each distance specified in buffer_distance config setting
+    buffer_gdf = project_gdf.copy()
+    buffer_gdf.geometry = buffer_gdf.buffer(int(distance))
 
-# Aggregate intersection to get population totals for each project
-result_df = gdf[['projID','App_ID','household_pop']].groupby(['projID','App_ID']).sum()[['household_pop']].reset_index()
-# OFM Estimates are not integers because they are calculated from higher-level geographies
-# Round up total for each project to nearest integer
-result_df['household_pop'] = np.ceil(result_df['household_pop']).astype(int)
-# Rename for clarity
-result_df.rename(columns={
-    'household_pop': f'population_in_{config['buffer_distance']}_ft_buffer'},
-    inplace=True
-    )
+    # Intersect buffered area with parcel geodataframe
+    gdf = gpd.sjoin(buffer_gdf, parcel_gdf)
+
+    # Aggregate intersection to get population totals for each project
+    df = gdf[['projID','App_ID','household_pop']].groupby(['projID','App_ID']).sum()[['household_pop']].reset_index()
+    # OFM Estimates are not integers because they are calculated from higher-level geographies
+    # Round up total for each project to nearest integer
+    df['household_pop'] = np.ceil(df['household_pop']).astype(int)
+    df['buffer'] = distance_label
+    result_df = pd.concat([result_df,df])
+
+# Reformat final table
+output_df = pd.pivot_table(result_df, index=['projID','App_ID'], 
+               columns='buffer', 
+               values='household_pop', 
+               aggfunc='first').reset_index()
 
 if not os.path.exists(config['output_dir']):
     os.makedirs(config['output_dir'])
-result_df.to_csv(os.path.join(config['output_dir'],'project_population.csv'))
+output_df.to_csv(os.path.join(config['output_dir'],'project_population.csv'))
 
 end_time = datetime.datetime.now()
 elapsed_total = end_time - start_time
