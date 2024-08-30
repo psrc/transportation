@@ -1,0 +1,1 @@
+Bike stress index for PSRC based on [Lowry et al (2016)](https://www1.coe.neu.edu/~pfurth/Furth%20papers/2016%20Prioritizing%20to%20improve%20low-stress%20network%20connectivity%20Lowry,%20Furth,%20Hadden-Loh.pdf)
